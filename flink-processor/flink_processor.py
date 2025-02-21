@@ -2,7 +2,8 @@ from pyflink.datastream import StreamExecutionEnvironment
 from pyflink.datastream.connectors import KafkaSource
 from pyflink.common.serialization import SimpleStringSchema
 from pyflink.common.typeinfo import Types
-from pyflink.datastream import WatermarkStrategy
+# from pyflink.datastream import WatermarkStrategy
+from pyflink.common.watermark_strategy import WatermarkStrategy
 from pyflink.common.time import Time
 from pyflink.datastream.window import TumblingEventTimeWindows
 import json
