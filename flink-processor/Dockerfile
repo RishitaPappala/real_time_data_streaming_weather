@@ -13,6 +13,9 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # Install required Python dependencies
 RUN pip install --no-cache-dir kafka-python psycopg2-binary apache-flink
 
+# Copy the Kafka connector JAR into Flink's lib directory
+COPY flink-connector-kafka_2.12-1.17.2.jar /opt/flink/lib/
+
 # Set the working directory for your Python script
 WORKDIR /app
 
