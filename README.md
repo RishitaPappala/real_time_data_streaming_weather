@@ -14,7 +14,7 @@ The `real_time_data_streaming_weather` directory is organized as follows:
 ```
 real_time_data_streaming_weather/
 ├── docker-compose.yml          # Docker Compose configuration for the services
-├── wait-for-it.sh              # Shell script to wait for Kafka and PostgreSQL
+├── wait-for-it.sh              # Shell script to wait for Zookeeper and Kafka
 ├── flink-processor/            # Flink processor directory
 │   ├── Dockerfile              # Dockerfile to build Flink processor container
 │   ├── flink_processor.py      # Python script to process weather data
