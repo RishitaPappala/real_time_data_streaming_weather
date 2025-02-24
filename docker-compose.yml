@@ -16,14 +16,14 @@ services:
           - zookeeper
 
   kafka:
-    image: confluentinc/cp-kafka
+    image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ADVERTISED_HOST_NAME: 0.0.0.0
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       JMX_PORT: 9999
     networks:
@@ -43,16 +43,13 @@ services:
     - bridge
 
   flink-processor:
-    build:
-      context: ./flink-processor
+    image: flink-processor
     depends_on:
       - kafka
-      - postgres
     environment:
       KAFKA_SERVER: "kafka:9092"
-      POSTGRES_URL: "jdbc:postgresql://postgres:5432/postgres"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
+      ZOOKEEPER_SERVER: "zookeeper:32181"
+      PRODUCER_INTERVAL: 100
     networks:
       - bridge
 
