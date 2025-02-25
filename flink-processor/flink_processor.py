@@ -150,7 +150,7 @@ def main():
     window_duration = DurationWrapper(jvm.java.time.Duration.ofSeconds(60))
 
     # Define the result type for the output
-    result_type = Types.ROW([Types.STRING(), Types.FLOAT()])
+    result_type = Types.ROW([Types.STRING(), Types.DOUBLE()])
 
     # Apply windowing, reduce, and map to tuples
     city_and_avg_stream = acc_stream.key_by(lambda acc: acc.city) \
